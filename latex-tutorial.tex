@@ -1,0 +1,530 @@
+% This document, as well as any compiled output document, is releasted under the
+% Creative Commons Attribution Share Alike license. For more information, see
+% https://creativecommons.org/licenses/by-sa/3.0/
+
+% Author: Rachel Domagalski
+% Email: rsdomagalski@gmail.com
+% This document is aimed both at people completely new to latex. It can also
+% serve as a reference of examples.
+
+% Document class is required for any and all latex documents. It is the basic
+% layout/format of the document you are typing. In this example, the document
+% class is an article, and the square brackets are setting the options for font
+% and paper size.
+\documentclass[11pt,letterpaper]{article}
+
+% In order to use certain features/options, the package for them has to be
+% loaded. In general, the syntax for this is \usepackage[options]{packages}. The
+% options aren't always necessary, as can be seen from certain \usepackage
+% commands.
+\usepackage[utf8]{inputenc} % Reads input file as UTF-8.
+\usepackage[margin=1in]{geometry} % This sets page layout.
+% Packages starting with ams are American Mathematical Society packages. These
+% are necessary for many of the math stuff that LaTeX is famous for. It's a good
+% idea to always have these 4 ams packages in your preamble for writing any
+% scientific paper.
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% The verbatim package is used for sections of unformatted text sections. An
+% example application for this would be for including code snippets in your
+% paper (actually, I would use something else to get colored syntax).
+\usepackage{verbatim}
+% The graphicx package is absolutely required if you want to include plots and
+% figures in your paper.
+\usepackage{graphicx}
+% I think this package is for putting captions on the side of figures. This
+% package can be ommitted if you choose, but I might use an example of this in
+% my sample paper.
+\usepackage{sidecap}
+
+% Normally, latex inserts a tab for new paragraphs. In order to disable this,
+% the following option is set. It is also worth noting that if this option is
+% set, an extra line break (\\) will have to be added to the end of each
+% paragraphs. To get regular paragraphs, comment this option out.
+\setlength{\parindent}{0pt}
+
+% Define commands that will be widely used.
+\newcommand{\br}{\ \\} % Add line breaks
+\newcommand{\tab}{\hspace*{2em}} % Add tabs
+
+% This is the title section. I'm only going to use the title, author, and date
+% options. For other title options, RTFM.
+\title{LaTeX tutorial}
+\author{Rachel Domagalski}
+% If you leave the date blank, it won't display a date. If you don't include the
+% date option, it will include the date of compilation (e.g. today).
+\date{August 6, 2013}
+
+% Now we are done with the preamble and we are beginning the actual document.
+% This is also a segway to talk about how to define certain sections of the text
+% to be formatted in certain ways. The general syntax for formatted sections
+% (more commonly known as environments) is this:
+% \begin{environment}
+% ...
+% \end{envrionment}
+% The begin-end syntax is basically a declaration of a certain environment. We
+% are about to enter the document environment. I will be using less comments
+% here as what I have to say can be used as examples of text and formatting.
+\begin{document}
+\maketitle % This statement is required if you want your title to be displayed.
+
+% To get an abstract in your paper, use the abstract command as such:
+\begin{abstract}
+    This is an abstract. It should be about a paragraph long and should
+    summarize the results of the paper. I'm only going to use a few sentences in
+    this example, but it should be enough to get the point across.
+\end{abstract}
+
+% Now, I am going to define sections and subsections. The syntax for this does
+% not use the begin-end syntax like a lot of the suff in latex. For similar
+% constructs, see the texmaker menu items including section and subsection.
+\section{Introduction}
+% To omit section numbering, add an asterisk as such:
+% \section*{Section name}
+
+This is an introduction.
+This sentence will be on the same line as the previous one.
+This sentence will contain an extra line break to signal the end of a
+paragraph.\\
+
+This is a second paragraph. I'm not going to write that much here, as it is for
+illustration purposes only. Anyway, I'll show you the subsection construct next.
+
+\subsection{Subsection example}
+
+The double backslash delimiter adds an extra line break to the end of a line.\\
+This is a new line, but still technically in the same paragraph as the previous
+one due to there not being two line breaks in the text editor after the first
+line.
+
+This is going to be in a new paragraph. However, since I didn't add an extra
+line end at the end of the previous paragraph, it will look like a new line in
+the same paragraph.\\
+
+
+
+
+
+
+
+
+Adding extra line breaks in the editor will not add extra line breaks in your
+document.
+
+\subsection{Lists}
+
+Lists can be made with the itemize or enumerate environments. These lists can be
+nested. Here is an example of an itemized list. There shouldn't be much to
+comment about in this case, as the syntax is both limited and straightforward.
+
+\begin{itemize}
+    \item First item\dots % vim-latexsuite automatically sets ... to \dots
+    % vim-latexsuite even does the \dots thing in comments!
+    % I have alias emacs='vim' in my .zshrc, because I CAN!
+    \item Second item\dots
+    \item Third item\dots
+    \item Fourth item\dots
+    \item etc\dots
+\end{itemize}
+
+Here is an example of an enumerated list. It's got basically all of the same
+syntax as the first list, but just uses a different environment.
+
+\begin{enumerate}
+    \item Pancakes
+    \item Waffles
+    \item French toast
+    \item Bacon
+    \item Hash browns
+\end{enumerate}
+
+It's also possible to make lists where you choose the labels. To do this, use
+the description environment as such.
+
+\begin{description}
+% I think that hfill is for horizontal alignment stuff.
+\item[First] \hfill \\
+    This is the first item.
+\item[Second] \hfill \\
+    This is the second item.
+\item[Third] \hfill \\
+    This is the third item.
+\end{description}
+
+It's not required to have a line break or anything after each customized list
+beginning. Here is another way to do the same list.
+
+\begin{description}
+    \item[First] This is the first item.
+    \item[Second] This is the second item.
+    \item[Third] This is the third item.
+\end{description}
+
+\section{Citations}
+% See the math typsetting section for examples of citations. I have cited the
+% schroedinger equation, the Biot-Savart law, and the Lorentz transformations.
+% The command for citing is \cite{referencename}. Reference names will be found
+% in an external file that I will describe in the next visible paragraph.
+
+Citing your sources is important, so I will talk about it now and include
+citations throughout the rest of the tutorial. Basically, what to do is to make
+a list of references in an external file with a .bib extension. The one I am
+using for this tutorial will be called reference\_list.bib. I probably won't
+comment it much, but it has an easy to follow and logical structure. Now, the
+addition of this extra file adds an extra step to the compilation process. When
+compiling a latex document in a terminal, the process goes as follows:
+
+% The verbatim environment is for inserting unformatted texts in documents.
+% bibtex will whine about how I didn't include the publishers for the books that
+% I referenced in my examples. Tell bibtex that I don't care.
+\begin{verbatim}
+$ pdflatex filename.tex
+$ bibtex filename.aux
+$ pdflatex filename.tex
+$ pdflatex filename.tex
+\end{verbatim}
+
+When using a GUI application like TeXmaker, there should be compile buttons for
+both (pdf)latex and bibtex. The compilation process will use the same order as
+the process in the terminal. First, compile the latex document. Next, use
+bibtex. After that, compile the latex document twice and you should be good to
+go.
+
+\section{Mathematics typesetting}
+
+There are way too many math symbols to go through here, but there are plenty of
+reference tables online. One general rule is that Greek letters are created by
+typing out the name. For capital Greek letters, capitalize the name. Example:
+$\alpha$, $\beta$, $\gamma$, $\Delta$, $\Psi$, $\psi$, $\chi$. Exponents and
+subscripts are done by \^ and \_, respectively. % Don't include the \!
+For exponents/subscripts that are more than one character, brackets are
+required. Example: $x^2$, $x_0$, $A^i_j$, $e^{-x^2}$, $X^{ab}_{cd}$. Square root
+is $\sqrt{x}$, and functions like sine, cosine, and tangent get their own
+commands. Example: $\sin(x)$, $\exp(x)$, $\arctan(x)$. You could also use
+brackets around the arguments of those functions if you like.
+
+\subsection{In-line math mode}
+
+I'll start this section out by talking about inserting math typesetting into the
+middle of sentences, like this: $E = mc^2$. As we will see in a second, not all
+of the display options you might want are not going to be available by default.
+For example, here are two examples of the syntax for fractions:
+$\frac{a}{b + c}$ and $\dfrac{a}{b + c}$. The second version is also equivalent
+to this: $\displaystyle \frac{a}{b + c}$. Some math functions have a
+'displaystyle' option, whereas other are the same either in an in-sentence math
+equation or as an equation in an equation environment, which I will go over
+next. The main types of math typesetting where you might need to use the
+displaystyle option are fractions, sums, and integrals. There might be more, but
+I don't have them in my memory right now, so you will have to RTFM.\\
+
+Another thing to note about the in-line math syntax is that $it\ makes\ all\
+letters\ italicized$, although you have to use escape sequences for spaces. This
+probably isn't the best way to do things and I will discuss other ways later.
+However, for single words, it is probably fine.\\
+
+\subsection{Math environments}
+
+I'm now about to show examples of various math environments. We will start with
+the equation environment. For an example that uses a variety of math syntax and
+symbols, I will use the Schr\"{o}dinger equation \cite{GriffithsQM:1995}. To get
+more examples like the umlaut syntax I just used, search for latex special
+characters. This environment gives numbered equations. I can even reference
+Equation \eqref{quantum} before I have even wrote it, although the reference
+will show up as a couple of question marks on the first compile. Compile it
+again to get the equation number.
+
+\begin{equation}
+    % Equation typesetting can span multiple lines here.
+    i \hbar \frac{\partial \Psi}{\partial t} =
+    -\frac{\hbar^2}{2m} \nabla^2 \Psi + V \Psi
+    \label{quantum} % Label creates a reference that we can use later
+    % To reference an eqation, use either \eqref{labelname} or \ref{labelname}.
+\end{equation}
+
+Next, I will demonstrate an equation without numbering. The name of the
+environment is called $displaymath$. I will demo it with the Biot-Savart Law
+from electromagnetism \cite{GriffithsEM:1999}. Hopefully, the equations that I
+use can help you out with learning various math syntax.
+
+\begin{displaymath}
+    \vec{B} = \frac{\mu_0}{4\pi} \int \frac{I\vec{dl} \times \hat{r}}{r^2}
+\end{displaymath}
+
+Another great resource for learning latex syntax for math is wikipedia. Just
+find a page with equations and hit the edit button to view the latex source.\\
+
+\subsection{Arrays and grouped equations}
+
+I'll give off some demos of arrays and grouped equations in latex. I should warn
+that I rarely use this feature, but it is worth knowing. This feature can get
+complicated fast, so I'll start with just a matrix and work up to matrix
+equations.\\
+
+Here is the identity matrix:
+\begin{displaymath}
+    % To have parentheses that adjust automatically to various sizes, use the
+    % commands \left( ... \right). Note that every \left must have a \right.
+    \left[ % brackets also work with left-right
+    \begin{array}{ccc}
+        % ccc means 3 centered columns. use l or r for right/left columns
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+        % Use the ampersand (&) to separate array items in each row.
+        % End each row with a line break (\\).
+    \end{array}
+    \right]
+\end{displaymath}
+
+There are other matrix environments available to use. Here is the identity
+matrix with one of these environments:
+\begin{displaymath}
+    \begin{bmatrix} % You do not have to specify column arrangement here
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+    \end{bmatrix}
+    % Other available *matrix environments:
+    % matrix, vmatrix, Vmatrix, bmatrix, Bmatrix, and pmatrix
+\end{displaymath}
+
+Here are the Lorentz transformations \cite{Lorentz} for motion in the $x$
+direction, in matrix form ($c = 1$).
+
+% It is usually good to break up complex math structures into simpler sections.
+% It will also make your document more readable to you.
+\begin{displaymath}
+    \begin{bmatrix}
+        t \prime \\
+        x \prime \\
+        y \prime \\
+        z \prime\\
+    \end{bmatrix}
+    =
+    \begin{bmatrix} % It's not necessary to align the ampersands.
+        \gamma        & -\beta \gamma & 0 & 0 \\
+        -\beta \gamma & \gamma        & 0 & 0 \\
+        0             & 0             & 1 & 0 \\
+        0             & 0             & 0 & 1 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        t \\
+        x \\
+        y \\
+        z \\
+    \end{bmatrix}
+\end{displaymath}
+
+Here is an example of a system of equations. Note that the column arrangement is
+different from the first matrix.
+
+\begin{displaymath}
+    \begin{array}{lcr}
+        2x + 3y + 4z & = & 0 \\
+        3x - 8y - 6z & = & 0 \\
+        5x + 7y - 7z & = & 0 \\
+    \end{array}
+\end{displaymath}
+
+Here is the same thing, but with a bracket on the left. In general, the array
+environment is more flexible and customizable than the matrix environment, but
+both should work well.
+
+\begin{displaymath}
+    \left\{
+    \begin{array}{lcr}
+        2x + 3y + 4z & = & 0 \\
+        3x - 8y - 6z & = & 0 \\
+        5x + 7y - 7z & = & 0 \\
+    \end{array}
+    \right. % Note: the left-right commands don't need to match
+    % \right. is for when you don't want a bracket on the right. \left. should
+    % also work.
+\end{displaymath}
+
+There is also an environment called $cases$, which can be useful for piecewise
+equations. Here is an example. Like always, the ampersand simple is used as a
+delimiter to distinguish sections from one another.
+
+\begin{displaymath}
+    f \left(x\right) =
+    \begin{cases}
+        x^2, & if x \geq 0 \\ % \geq is for greater than or equal to
+        -x,  & if x < 0 \\
+    \end{cases}
+\end{displaymath}
+
+\section{Figures and tables}
+
+% Note the use of grave and apostrophes in place of double quotes.
+You are bound to eventually have a plot in your latex document. Tables might
+also be necessary as well. The first sections that I will show are ``floating''
+figures. That means that latex will automatically place the figure at the
+beginning of a page or wherever it sees fit. I'll later show how to disable this
+feature. Tables made using the tabular environment don't float.
+
+\subsection{Figures}
+
+To embed a figure, use the figure environment. It is required that you have the
+graphicx package set in your preamble. Here is an example of a figure, using a
+plot from the final project of my basic semiconductor circuits class (See Figure
+\ref{bsc}). LaTeX will automatically place this figure somewhere. \\
+
+\begin{figure}
+    \centering % Makes the figure centered
+    % Both relative and absolute paths to the image are allowed. However,
+    % absolute paths make your .tex file unportable, which defeats part of the
+    % purpose of using latex. To include images from a folder called 'pics', do
+    % this: \includegraphics{pics/imagename.png}. NEVER use the parent directory
+    % symbol (..). DO NOT DO: \includegraphics{../folder/pic.png}.
+    % The square brackets lets you set options. The curly brackets lets you set
+    % the plot file. I'll put more examples here.
+    \includegraphics[width=0.6\textwidth]{eyes_closed_1000_30.png}
+    % Captions are optional. In-line math mode works in captions.
+    \caption{Spectrogram of an EEG reading computed using the Short-Time Fourier
+        Transform.}
+    % Labels are also optional, but they help people know what figure you are
+    % referring to. Label's sibling command is \ref. It's also worth nothing
+    % that labels might not be correct on the first compile. Just recompile and
+    % everything should be fine.
+    \label{bsc}
+\end{figure}
+
+That's a simple example of a figure and it should be sufficient for most
+applications. Next is an example of two side-by-side plots. The $minipage$
+environment will be used to achieve this (See Figures \ref{cosine} and
+\ref{sine}). Captions and labels can also be placed outside of the minipage
+environments (See Figure \ref{sincos}) It might be possible to put captions in
+both places, but I have never tried that.\\
+
+\begin{figure}
+    \centering % Keep entire structure centered
+    % When calling the minipage environment, what needs to get specified is the
+    % alignment ([t]) and the width. The alignment used in this example aligns
+    % to top of the minipage. To align to the bottom of the minipage, use the
+    % letter 'b' in place of 't'. There are other alignment options, but I never
+    % use them and I don't have them off the top of my head.
+    \begin{minipage}[t]{0.45\textwidth}
+        % Put the statements that normally go inside of the figure environment
+        % here inside the minipage.
+        \centering % center figures inside of the minipage
+        \includegraphics[width=\textwidth]{cos.pdf}
+        \caption{$\cos(x)$}
+        \label{cosine}
+    \end{minipage}
+    % Adding a space in between the two minipages is not necessary, but it makes
+    % things look better, IMO.
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sin.pdf}
+        \caption{$\sin(x)$}
+        \label{sine}
+    \end{minipage}
+\end{figure}
+
+% Same thing as above, but with one caption for both images.
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{cos.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sin.pdf}
+    \end{minipage}
+    % Caption and label can go here instead.
+    \caption{$\cos(x)$ and $\sin(x)$}
+    \label{sincos}
+\end{figure}
+
+LaTeX supports many image types and you can even embed PDF's in LaTeX documents
+as figures. It should be mentioned that the size of am image is one of the
+determining factors of the size of the output file. For example, if a 25 MB jpeg
+image gets embedded into a LaTeX document, the output document will be over 25
+MB. Basically, images should be resized to the absolute minimum size necessary
+before being included in LaTeX documents to avoid creating incredibly large
+output files. Nobody wants to have to deal with a +100 MB file containing a
+bunch of images. Size that stuff down.\\
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{piecewise.pdf}
+    \caption{PDF format}
+    \label{pdfformat}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{piecewise.png}
+    \caption{PNG format}
+    \label{pngformat}
+\end{figure}
+
+Another stylistic consideration to make is to use pdf instead of png for plots
+when possible. The reason for this is that most of the time, when saving plots
+to pdf, the output is lossless. When saving to png format, the output is always
+lossy and you can tell the difference by looking at a png plot versus a pdf
+plot (See Figures \ref{pdfformat} and \ref{pngformat}). Of course, there are
+some exceptions. If a PDF plot is large or LaTeX is having trouble embed it,
+then using png instead of pdf is an alright choice to make (See Figure
+\ref{bsc}). This convention is purely stylistic.\\
+
+\subsection{Tables}
+
+I'll give an example of a table. Like arrays, one must specify the alignment of
+the columns. However, one can also choose to have vertical lines in between
+columns in the alignment. The syntax is very similar to arrays and matrices, so
+I won't say that much about tables here. \\
+
+% To center the table, put it inside the center environment. \centering will
+% throw a compiler error. The center environment is not required for the tabular
+% environment.
+\begin{center}
+% The vertical lines in the column arrangement set vertical lines between
+% columns. All of these columns are centered, but a different arrangement could
+% easily be chosen.
+\begin{tabular}{| c | c | c |}
+    \hline % Add a horizontal line in between rows.
+    % Like arrays, use an ampersand to separate columns.
+    Col. 1 & Col. 2 & Col. 3 \\
+    \hline
+    0.234  & cheesecake & 234.2 \\
+    \hline
+    OpenBSD & 3.14 & 2.718 \\
+    \hline
+    134.1324 & 52345.52 & snowboard \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Non-floating figures}
+
+Sometimes the figure floating of LaTeX can be annoying and inconvenient, so it
+needs to be disabled. Here is how to do that (Figure \ref{arctan}).
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{arctan.pdf}
+    \caption{$\tan^{-1}(x)$}
+    \label{arctan}
+\end{figure}
+
+\section{Conclusion}
+
+That's all for now. Have fun!
+
+% Time to add in the bibliography for the three citations I made in the paper.
+% This command sets the style. In my case, I am choosing to leave the
+% bibliogaphy unsorted and in the order that items in reference_list.bib are
+% listed.
+\bibliographystyle{unsrt}
+% This command lets latex know the name of the bibliography. Latex knows to use
+% the .bib file even though the extension is missing.
+\bibliography{reference_list}{}
+
+% That's all folks!
+\end{document}
